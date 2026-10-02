@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Research Paper Repository - Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #07111f,
+                    #0f172a,
+                    #07130f
+                );
+
+            color: white;
+        }
+
+        .login-container {
+            width: 400px;
+            max-width: 92%;
+
+            padding: 40px;
+
+            background: #111827;
+
+            border: 1px solid #263449;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.4);
+
+            text-align: center;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #22c55e;
+
+            color: #07130a;
+
+            font-size: 25px;
+            font-weight: bold;
+
+            border: 3px solid #86efac;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 17px;
+        }
+
+        .input-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+
+            padding: 13px;
+
+            background: #0f172a;
+
+            border: 1px solid #334155;
+
+            border-radius: 8px;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            border-color: #22c55e;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(34, 197, 94, 0.15);
+        }
+
+        .main-button {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #22c55e;
+
+            color: #07130a;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .main-button:hover {
+            background: #16a34a;
+        }
+
+        .secondary-button {
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 10px;
+
+            border: 1px solid #334155;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+        .secondary-button:hover {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .message {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+        }
+
+        .error {
+            background:
+                rgba(220, 38, 38, 0.15);
+
+            color: #fca5a5;
+        }
+
+        .success {
+            background:
+                rgba(34, 197, 94, 0.15);
+
+            color: #86efac;
+        }
+
+        .switch-text {
+            margin-top: 20px;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        .switch-text button {
+            border: none;
+
+            background: none;
+
+            color: #22c55e;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .switch-text button:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="logo">
+        AVL
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- LOGIN PAGE -->
+    <!-- ============================= -->
+
+    <div id="loginSection">
+
+        <h1>
+            Research Paper Repository
+        </h1>
+
+        <p class="subtitle">
+            Login to your account
+        </p>
+
+
+        <form id="loginForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="main-button"
+            >
+                Login
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="loginError"
+            class="message error"
+        >
+            Invalid username or password.
+        </div>
+
+
+        <div class="switch-text">
+
+            Don't have an account?
+
+            <button
+                type="button"
+                onclick="showCreateAccount()"
+            >
+                Create Account
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- CREATE ACCOUNT -->
+    <!-- ============================= -->
+
+    <div
+        id="createSection"
+        class="hidden"
+    >
+
+        <h1>
+            Create Account
+        </h1>
+
+        <p class="subtitle">
+            Create your repository account
+        </p>
+
+
+        <form id="createForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="createUsername"
+                    placeholder="Choose username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="createPassword"
+                    placeholder="Create password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="main-button"
+            >
+                Create Account
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="createError"
+            class="message error"
+        ></div>
+
+
+        <div
+            id="createSuccess"
+            class="message success"
+        ></div>
+
+
+        <div class="switch-text">
+
+            Already have an account?
+
+            <button
+                type="button"
+                onclick="showLogin()"
+            >
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+// =====================================================
+// GET USERS
+// =====================================================
+
+function getUsers() {
+
+    const savedUsers =
+        localStorage.getItem(
+            "repositoryUsers"
+        );
+
+    if (!savedUsers) {
+
+        return [];
+
+    }
+
+    return JSON.parse(
+        savedUsers
+    );
+}
+
+
+
+// =====================================================
+// SAVE USERS
+// =====================================================
+
+function saveUsers(users) {
+
+    localStorage.setItem(
+        "repositoryUsers",
+        JSON.stringify(users)
+    );
+
+}
+
+
+
+// =====================================================
+// SHOW CREATE ACCOUNT
+// =====================================================
+
+function showCreateAccount() {
+
+    document
+        .getElementById("loginSection")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("createSection")
+        .classList
+        .remove("hidden");
+
+}
+
+
+
+// =====================================================
+// SHOW LOGIN
+// =====================================================
+
+function showLogin() {
+
+    document
+        .getElementById("createSection")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("loginSection")
+        .classList
+        .remove("hidden");
+
+}
+
+
+
+// =====================================================
+// CREATE ACCOUNT
+// =====================================================
+
+document
+    .getElementById("createForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const username =
+                document
+                .getElementById(
+                    "createUsername"
+                )
+                .value
+                .trim();
+
+
+            const password =
+                document
+                .getElementById(
+                    "createPassword"
+                )
+                .value;
+
+
+            const confirmPassword =
+                document
+                .getElementById(
+                    "confirmPassword"
+                )
+                .value;
+
+
+            const error =
+                document
+                .getElementById(
+                    "createError"
+                );
+
+
+            const success =
+                document
+                .getElementById(
+                    "createSuccess"
+                );
+
+
+            error.style.display =
+                "none";
+
+            success.style.display =
+                "none";
+
+
+
+            // Username length
+
+            if (username.length < 3) {
+
+                error.textContent =
+                    "Username must contain at least 3 characters.";
+
+                error.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+
+            // Password length
+
+            if (password.length < 4) {
+
+                error.textContent =
+                    "Password must contain at least 4 characters.";
+
+                error.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+
+            // Password match
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                error.textContent =
+                    "Passwords do not match.";
+
+                error.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+
+            // Get existing users
+
+            const users =
+                getUsers();
+
+
+
+            // Check username
+
+            const existingUser =
+                users.find(
+                    user =>
+                        user.username
+                        .toLowerCase() ===
+                        username.toLowerCase()
+                );
+
+
+            if (existingUser) {
+
+                error.textContent =
+                    "Username already exists.";
+
+                error.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+
+            // Create user
+
+            users.push({
+
+                username:
+                    username,
+
+                password:
+                    password
+
+            });
+
+
+
+            // Save user
+
+            saveUsers(
+                users
+            );
+
+
+
+            success.textContent =
+                "Account created successfully! You can now login.";
+
+            success.style.display =
+                "block";
+
+
+
+            document
+                .getElementById(
+                    "createForm"
+                )
+                .reset();
+
+
+            setTimeout(
+                function() {
+
+                    showLogin();
+
+                },
+                1200
+            );
+
+        }
+    );
+
+
+
+// =====================================================
+// LOGIN
+// =====================================================
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const username =
+                document
+                .getElementById(
+                    "loginUsername"
+                )
+                .value
+                .trim();
+
+
+            const password =
+                document
+                .getElementById(
+                    "loginPassword"
+                )
+                .value;
+
+
+            const error =
+                document
+                .getElementById(
+                    "loginError"
+                );
+
+
+
+            const users =
+                getUsers();
+
+
+
+            const user =
+                users.find(
+                    u =>
+                        u.username ===
+                        username
+                        &&
+                        u.password ===
+                        password
+                );
+
+
+
+            if (user) {
+
+
+                sessionStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+
+                sessionStorage.setItem(
+                    "username",
+                    user.username
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+
+            }
+            else {
+
+
+                error.style.display =
+                    "block";
+
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

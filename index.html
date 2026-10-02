@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Research Paper Repository</title>
+    <script>
+    if (sessionStorage.getItem("loggedIn") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION BAR
+         ===================================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Research Paper Repository
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#papers">
+                Papers
+            </a>
+
+            <a href="#add">
+                Add Paper
+            </a>
+
+            <a href="#avl">
+                AVL Tree
+            </a>
+            <button
+    type="button"
+    onclick="logoutUser()"
+>
+    Logout
+</button>
+
+<button
+    type="button"
+    onclick="deleteAccount()"
+>
+    Delete Account
+</button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         DASHBOARD
+         ===================================================== -->
+
+    <section
+        id="dashboard"
+        class="hero"
+    >
+
+        <h1>
+            Research Paper Repository
+        </h1>
+
+        <p>
+            Efficient Research Paper Management
+            Using AVL Tree
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATISTICS
+         ===================================================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <h3>
+                Total Papers
+            </h3>
+
+            <p id="totalPapers">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Total Authors
+            </h3>
+
+            <p id="totalAuthors">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Categories
+            </h3>
+
+            <p id="totalCategories">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                AVL Height
+            </h3>
+
+            <p id="avlHeight">
+                0
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESEARCH PAPERS
+         ===================================================== -->
+
+    <section
+        id="papers"
+        class="section"
+    >
+
+        <h2>
+            Research Paper Repository
+        </h2>
+
+
+        <!-- SEARCH + CATEGORY FILTER -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search research paper..."
+                onkeyup="searchPapers()"
+            >
+
+
+            <select
+                id="categoryFilter"
+                onchange="filterByCategory()"
+            >
+
+                <option value="">
+                    All Categories
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                onclick="clearFilters()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <!-- PAPER LIST -->
+
+        <div
+            id="paperList"
+            class="paper-list"
+        >
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADD RESEARCH PAPER
+         ===================================================== -->
+
+    <section
+        id="add"
+        class="section"
+    >
+
+        <h2>
+            Add Research Paper
+        </h2>
+
+
+        <form id="paperForm">
+
+
+            <!-- PAPER ID -->
+
+            <input
+                type="number"
+                id="paperId"
+                placeholder="Paper ID"
+                required
+            >
+
+
+            <!-- TITLE -->
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Research Paper Title"
+                required
+            >
+
+
+            <!-- AUTHOR -->
+
+            <input
+                type="text"
+                id="author"
+                placeholder="Author"
+                required
+            >
+
+
+            <!-- YEAR -->
+
+            <input
+                type="number"
+                id="year"
+                placeholder="Publication Year"
+                required
+            >
+
+
+            <!-- CATEGORY -->
+
+            <input
+                type="text"
+                id="category"
+                placeholder="Category"
+                required
+            >
+
+
+            <!-- JOURNAL -->
+
+            <input
+                type="text"
+                id="journal"
+                placeholder="Journal / Conference"
+                required
+            >
+
+
+            <!-- ABSTRACT -->
+
+            <textarea
+                id="abstract"
+                placeholder="Research Paper Abstract"
+            ></textarea>
+
+
+            <!-- PDF UPLOAD -->
+
+            <label
+                for="paperFile"
+                class="file-label"
+            >
+                Upload Research Paper PDF
+            </label>
+
+
+            <input
+                type="file"
+                id="paperFile"
+                accept=".pdf,application/pdf"
+            >
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+            >
+                Add Paper to Repository
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- =====================================================
+         AVL TREE
+         ===================================================== -->
+
+    <section
+        id="avl"
+        class="section"
+    >
+
+        <h2>
+            AVL Tree Visualization
+        </h2>
+
+
+        <div
+            id="treeContainer"
+        >
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            Research Paper Repository Management
+            Using AVL Tree
+        </p>
+
+        <p>
+            Developed using HTML, CSS and JavaScript
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="script.js"
+    ></script>
+    <script>
+
+function logoutUser() {
+
+    sessionStorage.removeItem("loggedIn");
+    sessionStorage.removeItem("username");
+
+    window.location.href = "login.html";
+}
+
+
+function deleteAccount() {
+
+    const username =
+        sessionStorage.getItem("username");
+
+    if (!username) {
+        alert("No account found!");
+        return;
+    }
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete your account?"
+        );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    const savedUsers =
+        localStorage.getItem("repositoryUsers");
+
+    const users =
+        JSON.parse(savedUsers || "[]");
+
+    const updatedUsers =
+        users.filter(
+            user =>
+                user.username !== username
+        );
+
+    localStorage.setItem(
+        "repositoryUsers",
+        JSON.stringify(updatedUsers)
+    );
+
+    sessionStorage.removeItem("loggedIn");
+    sessionStorage.removeItem("username");
+
+    alert("Account deleted successfully!");
+
+    window.location.href =
+        "login.html";
+}
+
+</script>
+
+</body>
+
+</html>
